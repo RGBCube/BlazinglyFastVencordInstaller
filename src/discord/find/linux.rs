@@ -38,10 +38,10 @@ fn get_sudo_user() -> anyhow::Result<String> {
     }
 
     Err(anyhow!(
-        r#"VencordInstaller was run as root but neither the
-SUDO_USER or DOAS_USER environment variables are set.
-Please rerun as a normal user, with sudo/doas, or manually
-set SUDO_USER to your username"#
+        "VencordInstaller was run as root but neither the \
+SUDO_USER or DOAS_USER environment variables are set. \
+Please rerun as a normal user, with sudo/doas, or manually \
+set SUDO_USER to your username"
     ))
 }
 
@@ -76,7 +76,7 @@ fn parse_discord_install(mut path: PathBuf) -> Option<discord::Installation> {
     };
 
     Some(discord::Installation {
-        branch: crate::discord::get_branch(&path).to_string(),
+        branch: discord::get_branch(&path).to_string(),
         path,
         app_path,
         is_patched,
@@ -91,12 +91,16 @@ pub fn find() -> anyhow::Result<Vec<discord::Installation>> {
 
         if real_user_name == "root" {
             return Err(anyhow!(
-                r#"VencordInstaller must not be run as the root user.
-Please rerun as normal user. Use sudo or doas to run as root."#
+                "VencordInstaller must not be run as the root user. \
+Please rerun as normal user. Use sudo or doas to run with escalated perm."
             ));
         }
 
-        users::get_user_by_name(&real_user_name).unwrap().home_dir().to_path_buf()
+        users::get_user_by_name(&real_user_name)
+            .ok_or_else(|| anyhow!("The SUDO_USER/DOAS_USER environment variable is set to a non-existent user. \
+Cannot use the home directory of a non-existent user."))?
+            .home_dir()
+            .to_path_buf()
     } else {
         Path::new(&env::var("HOME")?).to_path_buf()
     };
