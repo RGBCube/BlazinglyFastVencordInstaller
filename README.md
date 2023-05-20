@@ -29,7 +29,7 @@ Run the following command in your terminal and follow along with the instruction
 sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"
 ```
 
-### MacOs
+### MacOS
 
 Download the latest [MacOs build](https://github.com/Vencord/Installer/releases/latest/download/VencordInstaller.MacOS.zip), unzip it, and run `VencordInstaller.app` 
 
@@ -43,52 +43,8 @@ ___
 
 ### Prerequisites 
 
-You need to install the [Go programming language](https://go.dev/doc/install) and GCC, the GNU Compiler Collection (MinGW on Windows)
-
-<details>
-<summary>Additionally, if you're using Linux, you have to install some additional dependencies:</summary>
-
-#### Base dependencies
-```sh
-apt install -y pkg-config libsdl2-dev libglx-dev libgl1-mesa-dev
-```
-
-#### X11 dependencies
-```sh
-apt install -y xorg-dev
-```
-
-#### Wayland dependencies
-```sh
-apt install -y libwayland-dev libxkbcommon-dev wayland-protocols extra-cmake-modules
-```
-
-</details>
+You need to install the [nightly Rust toolchain](https://www.rust-lang.org/tools/install).
 
 ### Building
 
-#### Install dependencies
-
-```sh
-go mod tidy
-```
-
-#### Build the GUI
-
-##### Windows / Mac / Linux X11
-```sh
-go build
-```
-
-##### Linux Wayland
-```sh
-go build --tags wayland
-```
-
-#### Build the CLI
-```
-go build --tags cli
-```
-
-You might want to pass some flags to this command to get a better build.
-See [the GitHub workflow](https://github.com/Vendicated/VencordInstaller/blob/main/.github/workflows/release.yml) for what flags I pass or if you want more precise instructions
+TODO
