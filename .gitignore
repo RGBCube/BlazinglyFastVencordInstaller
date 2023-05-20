@@ -9,6 +9,8 @@
 !assets/winres/
 
 !src/
+!src/discord/
+!src/discord/find/
 
 !.gitignore
 !Cargo.lock
