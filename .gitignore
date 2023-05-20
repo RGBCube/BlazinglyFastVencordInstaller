@@ -1,4 +1,5 @@
-*.syso
+.idea/
+.vscode/
 
 nsis/nsis-installer.exe
 
