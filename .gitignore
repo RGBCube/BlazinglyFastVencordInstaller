@@ -1,6 +1,26 @@
-.idea/
-.vscode/
+*
 
-nsis/nsis-installer.exe
+!.github/
+!.github/workflows/
 
-/target
+!assets/
+!assets/macos/
+!assets/nsis/
+!assets/winres/
+
+!src/
+
+!.gitignore
+!Cargo.lock
+
+!*.icns
+!*.ico
+!*.json
+!*.md
+!*.nsi
+!*.plist
+!*.ps1
+!*.rs
+!*.sh
+!*.toml
+!*.yml
