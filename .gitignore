@@ -17,6 +17,7 @@
 !*.ico
 !*.json
 !*.md
+!*.nix
 !*.nsi
 !*.plist
 !*.ps1
