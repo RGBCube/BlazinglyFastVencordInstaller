@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-pub struct DiscordInstall {
+pub struct Installation {
     pub path: PathBuf, // Base path.
     pub app_path: PathBuf, // Path to the app folder.
     pub branch: String, // "stable", "ptb", "canary", "development", ...

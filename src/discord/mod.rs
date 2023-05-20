@@ -3,5 +3,5 @@ pub use find::*;
 
 mod branch;
 pub use branch::*;
-mod install;
-pub use install::*;
+mod installation;
+pub use installation::*;

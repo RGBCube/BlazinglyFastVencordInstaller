@@ -1,4 +1,4 @@
-use crate::discord::DiscordInstall;
+use crate::discord;
 
 use std::{
     env,
@@ -45,7 +45,7 @@ set SUDO_USER to your username"#
     ))
 }
 
-fn parse_discord_install(mut path: PathBuf) -> Option<DiscordInstall> {
+fn parse_discord_install(mut path: PathBuf) -> Option<discord::Installation> {
     if path.iter().any(|p| p == "flatpak") {
         let mut discord_name = path
             .file_name()
@@ -75,7 +75,7 @@ fn parse_discord_install(mut path: PathBuf) -> Option<DiscordInstall> {
         return None;
     };
 
-    Some(DiscordInstall {
+    Some(discord::Installation {
         branch: crate::discord::get_branch(&path).to_string(),
         path,
         app_path,
@@ -85,7 +85,7 @@ fn parse_discord_install(mut path: PathBuf) -> Option<DiscordInstall> {
     })
 }
 
-pub fn find() -> anyhow::Result<Vec<DiscordInstall>> {
+pub fn find() -> anyhow::Result<Vec<discord::Installation>> {
     let home_dir = if Uid::effective().is_root() {
         let real_user_name = get_sudo_user()?;
 
