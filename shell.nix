@@ -1,8 +1,7 @@
-with import <nixpkgs> {};
+{ pkgs ? import <nixpkgs> {} }:
 
-stdenv.mkDerivation rec {
-  name = "iced-env";
-  buildInputs = [
+pkgs.mkShell rec {
+  buildInputs = with pkgs; [
     expat
     fontconfig
     freetype
@@ -15,6 +14,6 @@ stdenv.mkDerivation rec {
     xorg.libXrandr
   ];
 
-  LD_LIBRARY_PATH = builtins.foldl'
-    (a: b: "${a}:${b}/lib") "${vulkan-loader}/lib" buildInputs;
+  LD_LIBRARY_PATH =
+    builtins.foldl' (a: b: "${a}:${b}/lib") "${pkgs.vulkan-loader}/lib" buildInputs;
 }
